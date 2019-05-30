@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!-- 包扫描器 -->
+    <!-- 加载service  -->
+    <context:component-scan base-package="com.youngnzhi.ssm.template.service"/>
+    <!-- 加载controller -->
+    <context:component-scan base-package="com.youngnzhi.ssm.template.controller"/>
+
+    <!-- 配置注解驱动-->
+    <mvc:annotation-driven/>
+    <!--静态资源访问-->
+    <mvc:default-servlet-handler/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/view/"
+          p:suffix=".jsp">
+    </bean>
+
+    <!--自定义参数绑定-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!--自定义日期格式转换器-->
+        <property name="converters">
+            <list>
+                <!--日期类型转换-->
+                <bean class="com.youngnzhi.ssm.template.converter.CustomDateConverter"> </bean>
+            </list>
+        </property>
+    </bean>
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <!--拦截器-->
+    <!--
+    <mvc:interceptors>
+        //自定义拦截器，如登录拦截器
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="manage.base.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    -->
+
+</beans>
