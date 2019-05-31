@@ -13,9 +13,9 @@
 
     <!-- 包扫描器 -->
     <!-- 加载service  -->
-    <context:component-scan base-package="com.youngnzhi.ssm.template.service"/>
+    <context:component-scan base-package="com.youngnzhi.activiti.service"/>
     <!-- 加载controller -->
-    <context:component-scan base-package="com.youngnzhi.ssm.template.controller"/>
+    <context:component-scan base-package="com.youngnzhi.activiti.controller"/>
 
     <!-- 配置注解驱动-->
     <mvc:annotation-driven/>
@@ -34,7 +34,7 @@
         <property name="converters">
             <list>
                 <!--日期类型转换-->
-                <bean class="com.youngnzhi.ssm.template.converter.CustomDateConverter"> </bean>
+                <bean class="com.youngnzhi.activiti.converter.CustomDateConverter"> </bean>
             </list>
         </property>
     </bean>

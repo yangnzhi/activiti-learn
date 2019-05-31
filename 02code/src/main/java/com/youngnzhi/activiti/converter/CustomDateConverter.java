@@ -1,4 +1,4 @@
-package com.youngnzhi.ssm.template.converter;
+package com.youngnzhi.activiti.converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

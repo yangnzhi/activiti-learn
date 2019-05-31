@@ -1,4 +1,4 @@
-package com.youngnzhi.ssm.template.util;
+package com.youngnzhi.activiti.util;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
@@ -23,5 +23,6 @@ public class CreateDB {
         //通过ProcessEngineConfiguration创建processEngine对象
         ProcessEngine processEngine = configuration.buildProcessEngine();
         System.out.println(processEngine);
+        System.out.println("====用Java程序创建activiti数据库表完成===");
     }
 }

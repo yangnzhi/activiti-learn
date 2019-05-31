@@ -13,7 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jdk.version>1.8</jdk.version><!-- jdk版本号 -->
-    <junit.version>3.8.1</junit.version><!-- junit版本号 -->
+    <junit.version>4.8.2</junit.version><!-- junit版本号 -->
     <spring.version>4.0.2.RELEASE</spring.version><!-- spring版本号 -->
     <mybatis.version>3.2.6</mybatis.version><!-- mybatis版本号 -->
     <!-- log4j日志文件管理包版本 -->
@@ -34,6 +34,11 @@
       <version>${junit.version}</version>
       <!-- 表示开发的时候引入，发布的时候不会加载此包 -->
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>RELEASE</version>
     </dependency>
 
     <!-- JSP相关 -->
@@ -242,6 +247,8 @@
           <include>**/*.xml</include>
           <include>**/*.properties</include>
           <include>**/*.ini</include>
+          <include>**/*.bpmn</include>
+          <include>**/*.png</include>   <!--编译的目录包括这些类型-->
         </includes>
         <filtering>false</filtering>
       </resource>

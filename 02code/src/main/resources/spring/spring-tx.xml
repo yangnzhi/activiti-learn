@@ -30,7 +30,7 @@
     </tx:advice>
     <!-- 切面 -->
     <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.youngnzhi.ssm.template.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.youngnzhi.activiti.service.*.*(..))"/>
     </aop:config>
 
 </beans>
