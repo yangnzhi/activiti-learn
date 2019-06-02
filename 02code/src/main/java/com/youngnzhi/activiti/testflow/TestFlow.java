@@ -24,7 +24,7 @@ public class TestFlow {
      * ProcessEngineConfiguration加载默认的activiti配置文件生成ProcessEngine
      * 默认的activiti名称为 activiti.cfg.xml且一定位于classpath下，不能位于classpath二级目录下
     */
-    private ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResourceDefault().buildProcessEngine();
+    private ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
     /**
      * 部署流程定义
@@ -74,7 +74,7 @@ public class TestFlow {
     @Test
     public void queryTaskList(){
         //任务负责人
-        String assignee = "xiaoli";
+        String assignee = "zhangsan";
 
         //使用taskservice
         TaskService taskService = processEngine.getTaskService();
