@@ -1,12 +1,13 @@
-package com.youngnzhi.activiti.util;
+package com.youngnzhi.activiti.init;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
-import org.springframework.web.context.ContextLoader;
 
 /**
  * @author: youngnzhi
- * @description: 用Java程序创建activiti数据库表
+ * @description: 创建activiti数据库表有两种方式:
+ *      1,使用activiti文件中包含的创建数据库表的脚本直接创建数据库表
+ *      2,用Java程序创建activiti数据库表
  * @date: 2019/5/29
  */
 public class CreateDB {

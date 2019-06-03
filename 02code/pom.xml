@@ -242,13 +242,14 @@
 
     <resources>
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>src/main/resources</directory> <!--编译的目录包括这些类型的资源文件-->
         <includes>
           <include>**/*.xml</include>
           <include>**/*.properties</include>
           <include>**/*.ini</include>
           <include>**/*.bpmn</include>
           <include>**/*.png</include>   <!--编译的目录包括这些类型-->
+          <include>**/*.zip</include>   <!--编译的目录包括这些类型-->
         </includes>
         <filtering>false</filtering>
       </resource>

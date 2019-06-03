@@ -7,7 +7,7 @@
     <!--引入spring-dao.xml，使用其中数据源-->
     <import resource="spring/spring-dao.xml"/>
 
-    <!--activiti配置-->
+    <!--单独运行activiti配置，使用StandaloneProcessEngineConfiguration-->
     <!--processEngineConfiguration: 用于创建processEngine id对应createDB中创建的processEngineConfiguration对象名称，默认为此-->
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
         <!--数据源-->

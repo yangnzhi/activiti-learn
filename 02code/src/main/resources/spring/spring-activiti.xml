@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-                            http://www.springframework.org/schema/context
-                            http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!--activiti与spring整合-->
 
     <!--引入spring-dao.xml，使用其中数据源-->
     <import resource="spring-dao.xml"/>
 
-    <!--activiti配置-->
-    <!--processEngineConfiguration: 用于创建processEngine id对应createDB中创建的processEngineConfiguration对象名称，默认为此-->
-    <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
-        <!--数据源-->
-        <property name="dataSource" ref="dataSource"/>
-        <!--activiti数据库表处理策略-->
-        <property name="databaseSchemaUpdate" value="true"/>
+    <!--activiti与spring整合，使用SpringProcessEngineConfiguration-->
+    <!-- 工作流引擎配置bean
+        id = "processEngineConfiguration" 用于创建processEngine id对应createDB中创建的processEngineConfiguration对象名称，默认为此
+     -->
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <!-- 数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 数据库策略 -->
+        <property name="databaseSchemaUpdate" value="true" />
+        <!-- 使用spring事务管理器 -->
+        <property name="transactionManager" ref="transactionManager" />
+        <!-- activiti的定时任务关闭 -->
+        <!--<property name="jobExecutorActivate" value="false" />-->
     </bean>
 
-    <!--
-        数据库操作策略：
-            false（默认）：检查数据库表的版本和依赖库的版本， 如果版本不匹配就抛出异常。
-            true: 构建流程引擎时，执行检查，如果需要就执行更新。 如果表不存在，就创建。
-            create-drop: 构建流程引擎时创建数据库表， 关闭流程引擎时删除这些表。
-            drop-create：先删除表再创建表。
-            create: 构建流程引擎时创建数据库表， 关闭流程引擎时不删除这些表。
-    -->
+    <!-- 流程引擎bean -->
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration" />
+    </bean>
+
+    <!--配置service-->
+    <!-- 资源服务service -->
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <!-- 流程运行service -->
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <!-- 任务管理service -->
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <!-- 历史管理service -->
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <!-- 用户管理service -->
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+    <!-- 引擎管理service -->
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
 </beans>
