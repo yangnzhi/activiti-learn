@@ -113,7 +113,7 @@ public class FlowTest {
         ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
 
         //设置查询条件，根据流程定义key查询多个流程
-        processDefinitionQuery.processDefinitionKey(this.PROCESS_DEFINITION_KEY);
+        processDefinitionQuery.processDefinitionKey(PROCESS_DEFINITION_KEY);
 
         //得出查询列表
         List<ProcessDefinition> list =  processDefinitionQuery.list();
@@ -140,7 +140,7 @@ public class FlowTest {
 
         //查询一个流程定义,根据流程定义id查询
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
-                                                      .processDefinitionId(this.PROCESS_DEFINITION_ID)
+                                                      .processDefinitionId(PROCESS_DEFINITION_ID)
                                                       .singleResult();
 
         //bpmn文件名称
@@ -163,8 +163,8 @@ public class FlowTest {
         FileOutputStream fileOutputStream_png = null;
 
         try{
-            fileOutputStream_bpmn = new FileOutputStream(new File(this.RESOUCRE_PATH + resourceName_bpmn));
-            fileOutputStream_png = new FileOutputStream(new File(this.RESOUCRE_PATH + resourceName_png));
+            fileOutputStream_bpmn = new FileOutputStream(new File(RESOUCRE_PATH + resourceName_bpmn));
+            fileOutputStream_png = new FileOutputStream(new File(RESOUCRE_PATH + resourceName_png));
 
             byte[] bytes = new byte[1024];
             int len = -1;
@@ -219,7 +219,7 @@ public class FlowTest {
         RepositoryService repositoryService = processEngine.getRepositoryService();
 
         //如果流程已经启动，该方法无法删除流程
-        repositoryService.deleteDeployment(this.PROCESS_DEPLOYMENT_ID);
+        repositoryService.deleteDeployment(PROCESS_DEPLOYMENT_ID);
 
         //通过级联删除将流程及相关的所有内容强制删除，无论流程是否启动
         //repositoryService.deleteDeployment(this.PROCESS_DEPLOYMENT_ID,true);
@@ -235,7 +235,7 @@ public class FlowTest {
         RuntimeService runtimeService = processEngine.getRuntimeService();
 
         //根据流程定义的key去启动流程，activiti找到最新版本的流程定义bpmn文件去启动
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(this.PROCESS_DEFINITION_KEY);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(PROCESS_DEFINITION_KEY);
 
         System.out.println("流程实例的id: " + processInstance.getProcessInstanceId());
         System.out.println("流程定义的id: " + processInstance.getId());
@@ -259,7 +259,7 @@ public class FlowTest {
 
         //设置查询条件
         //指定要查询的流程key
-        taskQuery.processDefinitionKey(this.PROCESS_DEFINITION_KEY);
+        taskQuery.processDefinitionKey(PROCESS_DEFINITION_KEY);
         //指定流程任务的负责人
         taskQuery.taskAssignee(assignee);
 
