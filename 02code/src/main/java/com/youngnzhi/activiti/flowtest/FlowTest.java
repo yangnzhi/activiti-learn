@@ -33,11 +33,18 @@ public class FlowTest {
     private static final String RESOUCRE_PATH = "F:/workspace/appData/activiti/";
 
     /**
+     * 方式一：
      * ProcessEngines加载默认的activiti配置文件生成ProcessEngine
      * 默认的activiti名称为 activiti.cfg.xml且一定位于classpath下，不能位于classpath二级目录下
     */
     //private ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
+    /**
+     * 方式二：
+     * ProcessEngineConfiguration加载配置文件生成processEngine
+     * ProcessEngineConfiguration获取的默认对象id为 processEngineConfiguration，是在配置文件定义的
+     * 如果配置文件中定义的不为默认id，则使用 ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(resource,id).buildProcessEngine();
+     */
     String resource = "activiti.cfg.xml";
     private ProcessEngine processEngine = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(resource).buildProcessEngine();
 
